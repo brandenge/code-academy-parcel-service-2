@@ -1,18 +1,29 @@
 'use strict';
 
-const eventPool = require('./eventPool');
+const { Server } = require('socket.io');
 const logEvent = require('./logEvent');
-require('../vendors/vendorEvents');
-require('../drivers/driverEvents');
+const PORT = process.env.PORT || 3002;
 
-eventPool.on('PICKUP', (order) => {
-  logEvent('PICKUP', order);
-});
+const server = new Server(PORT);
 
-eventPool.on('IN-TRANSIT', (order) => {
-  logEvent('IN-TRANSIT', order);
-});
+const caps = server.of('/CAPS');
+const vendors = server.of('Vendors');
+const drivers = server.of('Drivers');
 
-eventPool.on('DELIVERED', (order) => {
-  logEvent('DELIVERED', order);
+server.on('connection', (socket) => {
+  console.log(`Socket connected to the Event Server at socket ID ${socket.id}`);
+  socket.on('PICKUP', (order) => {
+    drivers.emit('PICKUP');
+    logEvent('PICKUP', order);
+  });
+
+  socket.on('IN-TRANSIT', (order) => {
+    vendors.emit('IN-TRANSIT');
+    logEvent('IN-TRANSIT', order);
+  });
+
+  socket.on('DELIVERED', (order) => {
+    vendors.emit('DELIVERED');
+    logEvent('DELIVERED', order);
+  });
 });
