@@ -26,6 +26,6 @@ This lab demonstrates to use Socket.io to establish socket connections for an ev
 
 ![UML Diagram](uml12.png)
 
-Diagram created with [InVision](https://www.figma.com/)
+Diagram created with [Figma](https://www.figma.com/)
 
 #### Credits: [Demo code from Ryan Gallaway at Code Fellows](https://github.com/codefellows/seattle-code-javascript-401d48/tree/main/class-12/inclass-demo)
