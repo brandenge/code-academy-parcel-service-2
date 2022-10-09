@@ -6,21 +6,30 @@
 
 ### Problem Domain
 
-This lab demonstrates to use Socket.io to establish socket connections for an event-based, real-time web application.
+This lab demonstrates how to implement an event-driven application using Socket.io. Socket connections are established via Socket.io, and then a series of event listeners and event emitters pass messages to each other.
+
+This example mimics a delivery service passing messages regarding the updated status of a shipped package that is sent from vendors to delivery truck drivers. A server hub runs in the middle, in-between the vendors and the drivers, acting as an intermediary and forwarding messages from vendors to drivers and from drivers to vendors.
 
 - [GitHub Repo](https://github.com/brandenge/code-academy-parcel-service-2)
 
 ### Setup
 
-`.env` Environments variables set as shown in the `.env.sample`
-
-- `PORT`
+- N/A
 
 #### Running the app
 
-- `npm start` or `nodemon` (if you have nodemon) to start the application.
+1) Run `node server/hub.js` to start the server hub event listeners.
+2) Run `node drivers/driverEvents.js` to start the drivers event listeners and emitters.
+3) Run `node vendors/vendorEvents.js` to start the vendor event listeners and emitters.
 
 #### Features / Routes
+
+Events
+
+1) New Order - emitted from vendorEvents to itself to trigger the entire event chain.
+2) Pickup - emitted from vendorEvents
+3) In-Transit - emitted from driverEvents
+4) Delivered - emitted from driverEvents
 
 #### UML Diagram
 
