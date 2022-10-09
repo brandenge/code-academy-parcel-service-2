@@ -18,9 +18,9 @@ This example mimics a delivery service passing messages regarding the updated st
 
 #### Running the app
 
-1) Run `node server/hub.js` to start the server hub event listeners.
-2) Run `node drivers/driverEvents.js` to start the drivers event listeners and emitters.
-3) Run `node vendors/vendorEvents.js` to start the vendor event listeners and emitters.
+1) Run `node server/index.js` to start the server hub event listeners.
+2) Run `node drivers/index.js` to start the drivers event listeners and emitters.
+3) Run `node vendors/index.js` to start the vendor event listeners and emitters.
 
 #### Features / Routes
 
@@ -30,6 +30,8 @@ Events
 2) Pickup - emitted from vendorEvents
 3) In-Transit - emitted from driverEvents
 4) Delivered - emitted from driverEvents
+
+Event emitters from the server to vendors use Socket.io rooms that are specific to each vendor.
 
 #### UML Diagram
 
